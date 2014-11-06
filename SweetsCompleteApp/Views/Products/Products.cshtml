@@ -1,0 +1,13 @@
+﻿@model IEnumerable<SweetsCompleteApp.Models.Products>
+@{
+    ViewBag.Title = "Products";
+}
+
+<h1>Products Display</h1>
+<br />
+@foreach (var item in Model)
+{
+    <h2> Product Name: @item.title </h2>
+    <h3> Product ID: @item.productID </h3>
+    <h3> Product Description: @item.description </h3> <br />
+}

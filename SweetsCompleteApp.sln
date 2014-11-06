@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30324.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SweetsCompleteApp", "SweetsCompleteApp\SweetsCompleteApp.csproj", "{D701D576-2114-45E3-8DC5-04F85849BF01}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PublishScripts", "PublishScripts", "{40E13793-EAD9-4012-85A4-0863FA2FB604}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\AzureWebAppPublishModule.psm1 = PublishScripts\AzureWebAppPublishModule.psm1
+		PublishScripts\Publish-WebApplication.ps1 = PublishScripts\Publish-WebApplication.ps1
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Configurations", "Configurations", "{7F28AD28-2E8E-4850-8BBD-908E520E2B30}"
+	ProjectSection(SolutionItems) = preProject
+		PublishScripts\Configurations\SweetsCompleteApp-WAWS-dev.json = PublishScripts\Configurations\SweetsCompleteApp-WAWS-dev.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D701D576-2114-45E3-8DC5-04F85849BF01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D701D576-2114-45E3-8DC5-04F85849BF01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D701D576-2114-45E3-8DC5-04F85849BF01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D701D576-2114-45E3-8DC5-04F85849BF01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7F28AD28-2E8E-4850-8BBD-908E520E2B30} = {40E13793-EAD9-4012-85A4-0863FA2FB604}
+	EndGlobalSection
+EndGlobal
