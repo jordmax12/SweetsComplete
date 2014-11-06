@@ -1,0 +1,213 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="UsersModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="fixed_purchases">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+          </Key>
+          <Property Name="purchase_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="trans_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="product_id" Type="int" Nullable="false" />
+          <Property Name="user_id" Type="int" />
+          <Property Name="date" Type="datetime" />
+          <Property Name="quantity" Type="int" />
+          <Property Name="sale_price" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="members">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="address" Type="nvarchar" MaxLength="2561" Nullable="false" />
+          <Property Name="city" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="state_province" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="postal_code" Type="char" MaxLength="10" Nullable="false" />
+          <Property Name="country" Type="char" MaxLength="3" Nullable="false" />
+          <Property Name="phone" Type="char" MaxLength="16" Nullable="false" />
+          <Property Name="balance" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="email" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="password" Type="nvarchar" MaxLength="16" Nullable="false" />
+        </EntityType>
+        <EntityType Name="products">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="sku" Type="nvarchar" MaxLength="16" />
+          <Property Name="title" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="description" Type="nvarchar" MaxLength="4000" />
+          <Property Name="price" Type="decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="special" Type="int" Nullable="false" />
+          <Property Name="link" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityContainer Name="UsersModelStoreContainer">
+          <EntitySet Name="fixed_purchases" EntityType="Self.fixed_purchases" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="members" EntityType="Self.members" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="products" EntityType="Self.products" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="UsersModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="fixed_purchases">
+          <Key>
+            <PropertyRef Name="purchase_id" />
+          </Key>
+          <Property Name="purchase_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="trans_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="product_id" Type="Int32" Nullable="false" />
+          <Property Name="user_id" Type="Int32" />
+          <Property Name="date" Type="DateTime" Precision="3" />
+          <Property Name="quantity" Type="Int32" />
+          <Property Name="sale_price" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="members" Relationship="UsersModel.fixed_purchasesmember" FromRole="fixed_purchases" ToRole="member" />
+          <NavigationProperty Name="product" Relationship="UsersModel.productfixed_purchases" FromRole="fixed_purchases" ToRole="product" />
+          <Property Name="product_product_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="member">
+          <Key>
+            <PropertyRef Name="user_id" />
+          </Key>
+          <Property Name="user_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="address" Type="String" MaxLength="2561" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="city" Type="String" MaxLength="64" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="state_province" Type="String" MaxLength="32" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="postal_code" Type="String" MaxLength="10" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="country" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="phone" Type="String" MaxLength="16" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="balance" Type="Decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="email" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="password" Type="String" MaxLength="16" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="fixed_purchases" Relationship="UsersModel.fixed_purchasesmember" FromRole="member" ToRole="fixed_purchases" />
+          <Property Name="fixed_purchases_purchase_id" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="product">
+          <Key>
+            <PropertyRef Name="product_id" />
+          </Key>
+          <Property Name="product_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="sku" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="title" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="description" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="price" Type="Decimal" Precision="6" Scale="2" Nullable="false" />
+          <Property Name="special" Type="Int32" Nullable="false" />
+          <Property Name="link" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="fixed_purchases" Relationship="UsersModel.productfixed_purchases" FromRole="product" ToRole="fixed_purchases" />
+        </EntityType>
+        <EntityContainer Name="UsersEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="fixed_purchases" EntityType="Self.fixed_purchases" />
+          <EntitySet Name="members" EntityType="Self.member" />
+          <EntitySet Name="products" EntityType="Self.product" />
+          <AssociationSet Name="fixed_purchasesmember" Association="UsersModel.fixed_purchasesmember">
+            <End Role="fixed_purchases" EntitySet="fixed_purchases" />
+            <End Role="member" EntitySet="members" />
+          </AssociationSet>
+          <AssociationSet Name="productfixed_purchases" Association="UsersModel.productfixed_purchases">
+            <End Role="product" EntitySet="products" />
+            <End Role="fixed_purchases" EntitySet="fixed_purchases" />
+          </AssociationSet>
+        </EntityContainer>
+        <Association Name="fixed_purchasesmember">
+          <End Type="UsersModel.fixed_purchases" Role="fixed_purchases" Multiplicity="1" />
+          <End Type="UsersModel.member" Role="member" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="fixed_purchases">
+              <PropertyRef Name="purchase_id" />
+            </Principal>
+            <Dependent Role="member">
+              <PropertyRef Name="fixed_purchases_purchase_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="productfixed_purchases">
+          <End Type="UsersModel.product" Role="product" Multiplicity="1" />
+          <End Type="UsersModel.fixed_purchases" Role="fixed_purchases" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="product">
+              <PropertyRef Name="product_id" />
+            </Principal>
+            <Dependent Role="fixed_purchases">
+              <PropertyRef Name="product_product_id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="UsersModelStoreContainer" CdmEntityContainer="UsersEntities">
+          <EntitySetMapping Name="fixed_purchases">
+            <EntityTypeMapping TypeName="UsersModel.fixed_purchases">
+              <MappingFragment StoreEntitySet="fixed_purchases">
+                <ScalarProperty Name="purchase_id" ColumnName="purchase_id" />
+                <ScalarProperty Name="trans_id" ColumnName="trans_id" />
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="date" ColumnName="date" />
+                <ScalarProperty Name="quantity" ColumnName="quantity" />
+                <ScalarProperty Name="sale_price" ColumnName="sale_price" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="members">
+            <EntityTypeMapping TypeName="UsersModel.member">
+              <MappingFragment StoreEntitySet="members">
+                <ScalarProperty Name="user_id" ColumnName="user_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state_province" ColumnName="state_province" />
+                <ScalarProperty Name="postal_code" ColumnName="postal_code" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="balance" ColumnName="balance" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="password" ColumnName="password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="products">
+            <EntityTypeMapping TypeName="UsersModel.product">
+              <MappingFragment StoreEntitySet="products">
+                <ScalarProperty Name="product_id" ColumnName="product_id" />
+                <ScalarProperty Name="sku" ColumnName="sku" />
+                <ScalarProperty Name="title" ColumnName="title" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="price" ColumnName="price" />
+                <ScalarProperty Name="special" ColumnName="special" />
+                <ScalarProperty Name="link" ColumnName="link" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
