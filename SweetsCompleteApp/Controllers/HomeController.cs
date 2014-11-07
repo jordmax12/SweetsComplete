@@ -8,16 +8,16 @@ namespace SweetsCompleteApp.Controllers
 {
     public class HomeController : Controller
     {
-        public string Index()
+        public ActionResult Index()
         {
-            return "Hello World";
+            return View();
         }
 
-        public string About()
+        public ActionResult About()
         {
             //ViewBag.Message = "Your application description page.";
 
-            return "about method";
+            return View();
         }
 
         public ActionResult Contact()

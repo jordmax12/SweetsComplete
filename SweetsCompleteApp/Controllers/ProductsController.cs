@@ -9,8 +9,32 @@ namespace SweetsCompleteApp.Controllers
 {
     public class ProductsController : Controller
     {
+        UsersEntities db = new UsersEntities();
+
+
+        public ActionResult Index()
+        {
+            return View(db.products.ToList());
+        }
+
+        [HttpGet]
+        public ActionResult Create()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Create(product product)
+        {
+            if(ModelState.IsValid)
+            {
+                db.products.Add(product);
+
+                return RedirectToAction("Index");
+            }
+            return View(product);
+        }
         // GET: Products
-        public ActionResult Products()
+        public ActionResult Products2()
         {
             Products product = new Products();
             product.title = "Fudge";
@@ -42,11 +66,6 @@ namespace SweetsCompleteApp.Controllers
             prods.Add(vanilla);
 
             return View(prods);
-        }
-
-        public ActionResult Index()
-        {
-            return View();
         }
     }
 }
