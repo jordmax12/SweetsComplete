@@ -5,9 +5,26 @@
 
 <h1>Products Display</h1>
 <br />
-@foreach (var item in Model)
-{
-    <h2> Product Name: @item.title </h2>
-    <h3> Product ID: @item.productID </h3>
-    <h3> Product Description: @item.description </h3> <br />
-}
+    <div class="container" style="width: 30%;">
+    @foreach (var item in Model)
+    {
+
+        <table class=" table" style="width: 70px; display: inline-block; margin: 20px;">
+            <thead>
+                <tr>
+                    <th>@item.title</th>
+                    <!--<th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>-->
+                </tr>
+            </thead>
+            <tr>
+                <td> @item.price </td>
+                <!--<td>Peter</td>
+                <td>Parker</td>
+                <td>peterparker@mail.com</td>-->
+            </tr>
+
+        </table>
+    }
+    </div>
