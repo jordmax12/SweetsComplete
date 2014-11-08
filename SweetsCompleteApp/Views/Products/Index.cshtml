@@ -32,26 +32,29 @@
     </tr>-->
 <div class="container">
     <ul style="list-style-type: none; width:80%; margin-left: 20%;">
-        @foreach (var item in Model)
-        {
-            <li class="container" style="display: inline-block;">
 
-                <p>
-                    @Html.DisplayFor(modelItem => item.link)
-                </p>
-                <p>
-                    @Html.DisplayFor(modelItem => item.title)
-                </p>
-                <p>
-                    @Html.DisplayFor(modelItem => item.price)
-                </p>
-                <p>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.product_id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.product_id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.product_id })
-                </p>
-            </li>
-        }
+
+@foreach (var item in Model)
+{
+
+    <li style="display: inline-block;">
+        <div class="container" style="width: 300px">
+            <img src="../Images/@(item.link).scale_20.jpg" width="190" height="130" />
+            <p>
+                @Html.DisplayFor(modelItem => item.title)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.price)
+            </p>
+            <p>
+                @Html.ActionLink("Edit", "Edit", new { id = item.product_id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.product_id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.product_id })
+            </p>
+        </div>
+    </li>
+}
+
     </ul>
 </div>
 
