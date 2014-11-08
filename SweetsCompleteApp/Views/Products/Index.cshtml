@@ -1,16 +1,15 @@
 ﻿@model IEnumerable<SweetsCompleteApp.product>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Products";
 }
 
-<h2>Index</h2>
+<h2>Our Products</h2>
 
-<p>
+<!--<p>
     @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
+</p>-->
+    <!--<tr>
         <th>
             @Html.DisplayNameFor(model => model.sku)
         </th>
@@ -30,34 +29,31 @@
             @Html.DisplayNameFor(model => model.link)
         </th>
         <th></th>
-    </tr>
+    </tr>-->
+<div class="container">
+    <ul style="list-style-type: none; width:80%;">
+        @foreach (var item in Model)
+        {
+            <li class="container" style="display: inline-block;">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.sku)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.title)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.special)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.link)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.product_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.product_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.product_id })
-        </td>
-    </tr>
-}
+                <p>
+                    @Html.DisplayFor(modelItem => item.link)
+                </p>
+                <p>
+                    @Html.DisplayFor(modelItem => item.title)
+                </p>
+                <p>
+                    @Html.DisplayFor(modelItem => item.price)
+                </p>
+                <p>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.product_id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.product_id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.product_id })
+                </p>
+            </li>
+        }
+    </ul>
+</div>
 
-</table>
+    
+

@@ -17,6 +17,12 @@ namespace SweetsCompleteApp.Controllers
             return View(db.products.ToList());
         }
 
+        /*[HttpGet]
+        public ActionResult Details()
+        {
+            return View();
+        }
+        [HttpPost]*/
         [HttpGet]
         public ActionResult Create()
         {
@@ -28,7 +34,7 @@ namespace SweetsCompleteApp.Controllers
             if(ModelState.IsValid)
             {
                 db.products.Add(product);
-
+                db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
             return View(product);
