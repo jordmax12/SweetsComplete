@@ -1,63 +1,47 @@
-﻿@model IEnumerable<SweetsCompleteApp.product>
+﻿@model IList<SweetsCompleteApp.product>
 
 @{
     ViewBag.Title = "Products";
+    
+    var itemsPerPage = 6;
+    var page = 1;
+    var x = 0;
+    
+    if(!IsPost)
+    {
+        x += 6;
+        itemsPerPage *= 2;
+
+    }
+
 }
 
 <h2>Our Products</h2>
+    <div class="container">
+        
+        <form method="post">
+            <button class="btn btn-success" type="submit" name="next"> Next </button>
+            <ul style="list-style-type: none; width:80%; margin-left: 20%;">
+                @for (int i = x; i < @itemsPerPage; i++)
+                {
 
-<!--<p>
-    @Html.ActionLink("Create New", "Create")
-</p>-->
-    <!--<tr>
-        <th>
-            @Html.DisplayNameFor(model => model.sku)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.title)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.description)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.special)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.link)
-        </th>
-        <th></th>
-    </tr>-->
-<div class="container">
-    <ul style="list-style-type: none; width:80%; margin-left: 20%;">
+                    <li style="display: inline-block;">
+                        <div class="container" style="width: 300px">
+
+                            <img src="~/Content/Images_fixed/@(Model[i].link).scale_20.jpg" width=" 190" height="130" />
+                            <p>
+                                @Html.DisplayFor(m => m[i].title)
+                            </p>
+                            <p>
+                                @Html.DisplayFor(m => m[i].price)
+                            </p>
+                        </div>
+                    </li>
+                }
+
+            </ul>
+        </form>
+    </div>
 
 
-@foreach (var item in Model)
-{ 
-
-    <li style="display: inline-block;">
-        <div class="container" style="width: 300px">
-             <img src="http://www.jdmdev.net/sweetscomplete/images/@(item.link).scale_20.JPG" width=" 190" height="130" />
-            <!--<img src="~/Content/Images_fixed/@(item.link).scale_20.jpg" width=" 190" height="130" />-->
-            <p>
-                @Html.DisplayFor(modelItem => item.title)
-            </p>
-            <p>
-                @Html.DisplayFor(modelItem => item.price)
-            </p>
-            <p>
-                @Html.ActionLink("Edit", "Edit", new { id = item.product_id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.product_id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.product_id })
-            </p>
-        </div>
-    </li>
-}
-
-    </ul>
-</div>
-
-    
 
