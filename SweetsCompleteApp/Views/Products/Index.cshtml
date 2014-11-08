@@ -28,12 +28,18 @@
     }
 }
 
+    <style>
+        .container {
+            text-align: center;
+        }
+    </style>
+
 <h2 class="text-center">Our Products</h2>
                 <form method="post">
 
                     <div class="container" style="width: 100%;">
 
-                        <button class="btn btn-success" type="submit" name="next"> Next </button>
+                        <button class="btn btn-success" type="submit" name="next" style="margin-left: 15%;"> Next </button>
                         <ul style="list-style-type: none; width: 70%; margin-left: auto; margin-right: auto; float: none; ">
                             @{
                                 x = getPageNum * 6;
