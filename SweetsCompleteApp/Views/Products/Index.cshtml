@@ -28,36 +28,38 @@
     }
 }
 
-<h2>Our Products</h2>
-    <div class="container">
-        
-        <form method="post">
-            <button class="btn btn-success" type="submit" name="next"> Next </button>
-            <ul style="list-style-type: none; width:80%; margin-left: 20%;">
-                @{ 
-                x = getPageNum * 6;
-                }
-                    
-                @for (int i = x; i < @itemsPerPage; i++)
-                {
+<h2 class="text-center">Our Products</h2>
+                <form method="post">
 
-                    <li style="display: inline-block;">
-                        <div class="container" style="width: 300px">
+                    <div class="container" style="width: 100%;">
 
-                            <img src="~/Content/Images_fixed/@(Model[i].link).scale_20.jpg" width=" 190" height="130" />
-                            <p>
-                                @Html.DisplayFor(m => m[i].title)
-                            </p>
-                            <p>
-                                @Html.DisplayFor(m => m[i].price)
-                            </p>
-                        </div>
-                    </li>
-                }
+                        <button class="btn btn-success" type="submit" name="next"> Next </button>
+                        <ul style="list-style-type: none; width: 70%; margin-left: auto; margin-right: auto; float: none; ">
+                            @{
+                                x = getPageNum * 6;
+                            }
+                            <div class="container" style="margin-left: auto; margin-right: auto; float: none; ">
+                                @for (int i = x; i < @itemsPerPage; i++)
+                                {
+                                    <li style="display: inline-block;">
+                                        <div class="container">
 
-            </ul>
-        </form>
-    </div>
+                                            <img src="~/Content/Images_fixed/@(Model[i].link).scale_20.jpg" width=" 190" height="130" />
+                                            <p>
+                                                @Html.DisplayFor(m => m[i].title)
+                                            </p>
+                                            <p>
+                                                @Html.DisplayFor(m => m[i].price)
+                                            </p>
+                                        </div>
+                                    </li>
+                                }
+                            </div>
+                                 
+
+                        </ul>
+                    </div>
+                </form>
 
 
 
