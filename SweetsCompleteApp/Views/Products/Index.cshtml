@@ -4,16 +4,28 @@
     ViewBag.Title = "Products";
     
     var itemsPerPage = 6;
-    var page = 1;
     var x = 0;
-    
-    if(!IsPost)
-    {
-        x += 6;
-        itemsPerPage *= 2;
+    var j = 1;
 
+
+
+    string url = HttpContext.Current.Request.Url.AbsoluteUri;
+    string fixedurl = Request.RawUrl.Split(new[] { '?' })[0];
+    string newParam = Request.Params["page"] ?? "0";
+    int getPageNum = Convert.ToInt32(newParam);
+    if(getPageNum == 0)
+    {
+        itemsPerPage = 6;
+    }
+    else if(getPageNum >= 1)
+    {
+        itemsPerPage = 6 * (getPageNum + 1); 
     }
 
+    if (IsPost)
+    {
+        Response.Redirect(fixedurl + "?page=" + (getPageNum + 1));
+    }
 }
 
 <h2>Our Products</h2>
@@ -22,6 +34,10 @@
         <form method="post">
             <button class="btn btn-success" type="submit" name="next"> Next </button>
             <ul style="list-style-type: none; width:80%; margin-left: 20%;">
+                @{ 
+                x = getPageNum * 6;
+                }
+                    
                 @for (int i = x; i < @itemsPerPage; i++)
                 {
 
