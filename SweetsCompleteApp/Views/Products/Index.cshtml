@@ -24,7 +24,7 @@
 
     if (IsPost)
     {
-        Response.Redirect(fixedurl + "?page=" + (getPageNum + 1));
+        
     }
 }
 
@@ -39,7 +39,8 @@
 
                     <div class="container" style="width: 100%;">
 
-                        <button class="btn btn-success" type="submit" name="next" style="margin-left: 15%;"> Next </button>
+                        <button class="btn btn-success" type="submit" name="submit" id="prev" style="margin-right: 3%; width:80px;" value="prev"> Prev </button>
+                        <button class="btn btn-success" type="submit" name="submit" id="next" style="margin-left: 3%; width: 80px;" value="next"> Next </button>
                         <ul style="list-style-type: none; width: 70%; margin-left: auto; margin-right: auto; float: none; ">
                             @{
                                 x = getPageNum * 6;

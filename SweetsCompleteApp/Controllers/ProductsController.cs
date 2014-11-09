@@ -12,8 +12,28 @@ namespace SweetsCompleteApp.Controllers
         UsersEntities db = new UsersEntities();
 
 
-        public ActionResult Index()
+        public ActionResult Index(string submit)
         {
+            string fixedurl = Request.RawUrl.Split(new[] { '?' })[0];
+            string newParam = Request.Params["page"] ?? "0";;
+            int getPageNum = Convert.ToInt32(newParam);
+
+            switch (submit)
+            {
+
+                case "prev":
+                    // Do something
+
+                    Response.Redirect(fixedurl + "?page=" + (getPageNum - 1));
+                    break;
+                case "next":
+                    // Do something
+                    Response.Redirect(fixedurl + "?page=" + (getPageNum + 1));
+                    break;
+                default:
+                    //throw new Exception();
+                    break;
+            }
             return View(db.products.ToList());
         }
 
