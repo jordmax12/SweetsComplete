@@ -98,7 +98,7 @@
             {
                 char[] newP = newParam.ToCharArray();
                 newParam = newP[0].ToString().ToUpper() + newParam.Substring(1);
-                if((item.name).Contains(@newParam))
+                if ((item.name).Contains(@newParam) || (item.address).Contains(@newParam) || (item.city).Contains(@newParam) || (item.state_province).Contains(@newParam) || (item.country).Contains(@newParam))
                 {
                       <td>
                             @Html.DisplayFor(modelItem => item.name)
