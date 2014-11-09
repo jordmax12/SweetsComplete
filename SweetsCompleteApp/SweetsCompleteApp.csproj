@@ -164,6 +164,7 @@
     <Compile Include="Areas\Images\ImagesAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MembersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="fixed_purchases.cs">
       <DependentUpon>UsersModel.tt</DependentUpon>
@@ -323,6 +324,7 @@
     <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Products\Create.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Members\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
