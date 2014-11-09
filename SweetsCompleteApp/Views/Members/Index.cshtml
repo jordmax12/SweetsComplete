@@ -2,10 +2,22 @@
 
 @{
     ViewBag.Title = "Index";
+    
 }
 
-<h2>Index</h2>
+<style>
+    .capitalizedText {
+        text-transform: capitalize;
+    }
+</style>
 
+<h2>Index</h2>
+<form method="GET" class="form-search">
+    <div class="input-append">
+        <input type="text" class="span2 search-query capitalizedText" id="que" name="query">
+        <button type="submit" class="btn">Search</button>
+    </div>
+</form>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
@@ -46,41 +58,82 @@
 
 @foreach (var item in Model) {
     <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.address)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.city)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.state_province)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.postal_code)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.country)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.phone)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.balance)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.email)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.password)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.user_id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.user_id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.user_id })
-        </td>
+         @{
+            string newParam =  Request.Params["query"] ?? "0";
+            if(newParam == "0")
+            {
+                <td>
+                        @Html.DisplayFor(modelItem => item.name)
+
+                    <td>
+                        @Html.DisplayFor(modelItem => item.address)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.city)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.state_province)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.postal_code)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.country)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.phone)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.balance)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.email)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.password)
+                    </td>
+                    </td>
+            }
+            else
+            {
+                char[] newP = newParam.ToCharArray();
+                newParam = newP[0].ToString().ToUpper() + newParam.Substring(1);
+                if((item.name).Contains(@newParam))
+                {
+                      <td>
+                            @Html.DisplayFor(modelItem => item.name)
+
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.city)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.state_province)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.postal_code)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.balance)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.email)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.password)
+                        </td>
+                        </td>
+                    }
+            }
+        }
     </tr>
 }
 
