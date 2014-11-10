@@ -11,6 +11,10 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Owin;
 using SweetsCompleteApp.Models;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+using System.Data.SqlClient;
+using System.Configuration;
 
 namespace SweetsCompleteApp.Controllers
 {
@@ -18,7 +22,7 @@ namespace SweetsCompleteApp.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
-
+        
         public AccountController()
         {
         }
@@ -96,6 +100,8 @@ namespace SweetsCompleteApp.Controllers
                 {
                     await SignInAsync(user, isPersistent: false);
 
+                    InsertToDB(user.Email, user.PasswordHash);
+
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -112,6 +118,35 @@ namespace SweetsCompleteApp.Controllers
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        public void InsertToDB(string email, string password)
+        {
+            string connString = ConfigurationManager.ConnectionStrings[@"Users"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                if (conn.State != System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine("Error in opening database connection!");
+                    return;
+                }
+
+                using (SqlCommand cmd = new SqlCommand("INSERT INTO members (email, password) VALUES (@email, @password)", conn))
+                {
+                    SqlParameter emailP = new SqlParameter();
+                    emailP.ParameterName = "@email";
+                    emailP.Value = email;
+
+                    SqlParameter passP = new SqlParameter();
+                    passP.ParameterName = "@password";
+                    passP.Value = password;
+
+                    cmd.Parameters.Add(emailP);
+                    cmd.Parameters.Add(passP);
+                }
+            }
         }
 
         //
