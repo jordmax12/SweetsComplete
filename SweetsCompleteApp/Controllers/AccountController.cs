@@ -146,6 +146,10 @@ namespace SweetsCompleteApp.Controllers
 
                     cmd.Parameters.Add(emailP);
                     cmd.Parameters.Add(passP);
+
+                    conn.Open();
+                    cmd.ExecuteNonQuery();
+                    conn.Close();
                 }
             }
         }
