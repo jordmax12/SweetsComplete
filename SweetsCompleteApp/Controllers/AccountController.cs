@@ -100,7 +100,7 @@ namespace SweetsCompleteApp.Controllers
                 {
                     await SignInAsync(user, isPersistent: false);
 
-                    InsertToDB(user.Email, user.PasswordHash);
+                    //InsertToDB(user.Email, user.PasswordHash);
 
                     // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
