@@ -82,7 +82,22 @@ namespace SweetsCompleteApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = await UserManager.FindAsync(model.Email, model.Password);
+
+                bool didClear = CheckTheDB(model.Email, model.Password);
+                if(didClear)
+                {
+                    HttpCookie cookie = new HttpCookie("user");
+                    String loginCred = model.Email.Trim();
+                    cookie.Value = loginCred;
+                    cookie.Expires = DateTime.Now.AddSeconds(180);
+                    Response.Cookies.Add(cookie);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+
+                }
+                /*var user = await UserManager.FindAsync(model.Email, model.Password);
                 if (user != null)
                 {
                     await SignInAsync(user, model.RememberMe);
@@ -91,11 +106,54 @@ namespace SweetsCompleteApp.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Invalid username or password.");
-                }
+                }*/
+
+
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        public bool CheckTheDB(string email, string password)
+        {
+            string connString = ConfigurationManager.ConnectionStrings[@"Users"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                if (conn.State != System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine("Error in opening database connection!");
+                    return false;
+                }
+
+                using (SqlCommand cmd = new SqlCommand("SELECT email, password FROM members WHERE email = @email AND password = @password", conn))
+                {
+                    SqlParameter emailP = new SqlParameter();
+                    emailP.ParameterName = "@email";
+                    emailP.Value = email;
+
+                    SqlParameter passP = new SqlParameter();
+                    passP.ParameterName = "@password";
+                    passP.Value = password;
+
+                    cmd.Parameters.Add(emailP);
+                    cmd.Parameters.Add(passP);
+
+                    cmd.ExecuteNonQuery();
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        if (rdr.Read())
+                            return true;
+                        else
+                            return false;
+                    }
+
+                    conn.Close();
+                }
+            }
+            return false;
         }
 
         //
