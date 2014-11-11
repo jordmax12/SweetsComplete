@@ -53,6 +53,27 @@ namespace SweetsCompleteApp.Controllers
         }
 
         //
+        // GET: /Account/Login
+        [AllowAnonymous]
+        public ActionResult LogOff(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View();
+        }
+
+        //
+        // POST: /Account/LogOff
+        [HttpPost]
+        [AllowAnonymous]
+        public async Task<ActionResult> LogOff()
+        {
+            var temp = new HttpCookie("user");
+            temp.Expires = DateTime.Now.AddDays(-1);
+            Response.Cookies.Add(temp);
+            return RedirectToAction("Index", "Home");
+        }
+
+        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
@@ -96,6 +117,12 @@ namespace SweetsCompleteApp.Controllers
             {
                 var user = new ApplicationUser() { UserName = model.Email, Email = model.Email };
                 InsertToDB(model.Email, model.Password);
+                HttpCookie cookie = new HttpCookie("user");
+                String loginCred = model.Email.Trim();
+                cookie.Value = loginCred;
+                cookie.Expires = DateTime.Now.AddSeconds(180);
+                Response.Cookies.Add(cookie);
+                return RedirectToAction("Index", "Home");
                 /*IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -469,15 +496,7 @@ namespace SweetsCompleteApp.Controllers
             return View(model);
         }
 
-        //
-        // POST: /Account/LogOff
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult LogOff()
-        {
-            AuthenticationManager.SignOut();
-            return RedirectToAction("Index", "Home");
-        }
+
 
         //
         // GET: /Account/ExternalLoginFailure

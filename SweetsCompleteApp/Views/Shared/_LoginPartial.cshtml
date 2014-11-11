@@ -1,17 +1,17 @@
 ﻿@using Microsoft.AspNet.Identity
-@if (Request.IsAuthenticated)
+@if (Request.Cookies["user"] != null)
 {
-    using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
-    {
-    @Html.AntiForgeryToken()
 
     <ul class="nav navbar-nav navbar-right">
         <li>
-            @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @{
+                 string user = Request.Cookies["user"].Value.ToString();
+            }
+            @Html.ActionLink("Hello " + @user + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
-        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+        <li>@Html.ActionLink("Log off", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
     </ul>
-    }
+    
 }
 else
 {

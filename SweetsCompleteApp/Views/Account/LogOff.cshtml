@@ -1,0 +1,9 @@
+﻿@using SweetsCompleteApp.Models
+@{
+    ViewBag.Title = "LogOut";
+    var temp = new HttpCookie("user");
+    temp.Expires = DateTime.Now.AddDays(-1);
+    Response.Cookies.Add(temp);
+    Response.Redirect("~/");
+    
+}
