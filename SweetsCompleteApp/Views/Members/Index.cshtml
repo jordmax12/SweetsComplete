@@ -81,31 +81,34 @@
             {
                 char[] newP = newParam.ToCharArray();
                 newParam = newP[0].ToString().ToUpper() + newParam.Substring(1);
-                if ((item.name).Contains(@newParam) || (item.address).Contains(@newParam) || (item.city).Contains(@newParam) || (item.state_province).Contains(@newParam) || (item.country).Contains(@newParam))
+                if((item.name) != null|| (item.address) != null || (item.city) != null || (item.state_province) != null || (item.country) != null)
                 {
-                    <td>
-                        @Html.DisplayFor(modelItem => item.name)
+                    if ((item.name).Contains(@newParam) || (item.address).Contains(@newParam) || (item.city).Contains(@newParam) || (item.state_province).Contains(@newParam) || (item.country).Contains(@newParam))
+                    {
+                        <td>
+                            @Html.DisplayFor(modelItem => item.name)
 
-                    <td>
-                        @Html.DisplayFor(modelItem => item.address)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.city)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.state_province)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.country)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.phone)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.balance)
-                    </td>
-                    </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.address)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.city)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.state_province)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.country)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.phone)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.balance)
+                        </td>
+                        </td>
                     }
+                }
             }
         }
     </tr>
