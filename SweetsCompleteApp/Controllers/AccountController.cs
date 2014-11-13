@@ -53,7 +53,7 @@ namespace SweetsCompleteApp.Controllers
         }
 
         //
-        // GET: /Account/Login
+        // GET: /Account/Logoff
         [AllowAnonymous]
         public ActionResult LogOff(string returnUrl)
         {
