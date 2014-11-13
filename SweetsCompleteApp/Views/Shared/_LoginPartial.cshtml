@@ -3,6 +3,15 @@
 {
 
     <ul class="nav navbar-nav navbar-right">
+        <div class='btn-group pull-right right-nav'>
+            <button type="button" class="btn btn-mini dropdown-toggle" data-toggle="dropdown">
+                <span class="caret"></span>
+                <span clas="sr-only">Admin</span>
+            </button>
+            <ul class="dropdown-menu" role="menu">
+                <li> Edit User Profile </li>
+            </ul>
+        </div>
         <li>
             @{
                  string user = Request.Cookies["user"].Value.ToString();
