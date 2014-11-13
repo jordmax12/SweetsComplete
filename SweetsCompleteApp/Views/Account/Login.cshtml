@@ -4,11 +4,12 @@
 @{
     ViewBag.Title = "Log in";
     
-    if(IsPost)
+    if (Request.Cookies["user"] != null)
     {
-        
+        <h2> testing </h2>
     }
 }
+
 
 <h2>@ViewBag.Title.</h2>
 <div class="row">
