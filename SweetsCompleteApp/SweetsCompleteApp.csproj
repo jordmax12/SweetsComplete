@@ -326,6 +326,7 @@
     <Content Include="Views\Products\Details.cshtml" />
     <Content Include="Views\Members\Index.cshtml" />
     <Content Include="Views\Account\LogOff.cshtml" />
+    <Content Include="Views\Members\ManageUser.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

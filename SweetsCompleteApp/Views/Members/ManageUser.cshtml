@@ -1,0 +1,31 @@
+﻿@model IEnumerable<SweetsCompleteApp.member>
+
+@{
+    ViewBag.Title = "ManageUser";
+}
+
+<h2>Manage User</h2>
+
+@foreach (var item in Model) {
+       if (Request.Cookies["user"].Value == item.email)
+       {
+            <h2> Your Profile </h2>
+            <label class="cold-md-2 control-label"> Name: @Html.DisplayFor(modelItem => item.name) </label>
+            <br />
+            <label class="cold-md-2 control-label"> Address: @Html.DisplayFor(modelItem => item.address)</label>
+            <br />
+            <label class="cold-md-2 control-label"> City: @Html.DisplayFor(modelItem => item.city)</label>
+            <br />
+            <label class="cold-md-2 control-label"> State: @Html.DisplayFor(modelItem => item.state_province)</label>
+            <br />
+            <label class="cold-md-2 control-label"> Country: @Html.DisplayFor(modelItem => item.country)</label>
+            <br />
+            <label class="cold-md-2 control-label"> Phone Number: @Html.DisplayFor(modelItem => item.phone)</label>
+            <br />
+            <label class="cold-md-2 control-label"> Email Address: @Html.DisplayFor(modelItem => item.email)</label>
+            <br />
+            <label class="cold-md-2 control-label"> Password: @Html.DisplayFor(modelItem => item.password)</label>
+       }
+}
+
+</table>

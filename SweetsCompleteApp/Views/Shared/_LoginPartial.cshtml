@@ -6,7 +6,7 @@
         <div class='btn-group pull-right right-nav'>
             <button type="button" class="btn btn-mini dropdown-toggle" data-toggle="dropdown" style="margin-top: 7px;">
                 <span class="caret"></span>
-                <span clas="sr-only">Admin</span>
+                <span clas="sr-only">@Request.Cookies["user"].Value.ToString() </span>
             </button>
             <ul class="dropdown-menu" role="menu">
                 <li> Edit User Profile </li>
@@ -16,7 +16,7 @@
             @{
                  string user = Request.Cookies["user"].Value.ToString();
             }
-            @Html.ActionLink("Hello " + @user + "!", "Manage", "Account", routeValues: null, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink("Manage Profile", "ManageUser", "Members", routeValues: null, htmlAttributes: new { title = "Manage" })
         </li>
         <li>@Html.ActionLink("Log off", "LogOff", "Account", routeValues: null, htmlAttributes: new { id = "logoutLink" })</li>
     </ul>

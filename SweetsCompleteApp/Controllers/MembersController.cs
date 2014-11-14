@@ -18,6 +18,14 @@ namespace SweetsCompleteApp.Controllers
             return View(db.members.ToList());
         }
 
+        // GET: /Account/Edit
+        [AllowAnonymous]
+        public ActionResult ManageUser(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            return View(db.members.ToList());
+        }
+
         //
         // GET: /Account/Edit
         [AllowAnonymous]
