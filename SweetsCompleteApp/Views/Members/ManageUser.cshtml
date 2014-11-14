@@ -4,30 +4,48 @@
     ViewBag.Title = "ManageUser";
 }
 
-<h2>Manage User</h2>
+@if (Request.Cookies["user"] != null)
+{
+    <h2>Manage User</h2>
+}
 
-@foreach (var item in Model) {
-       if (Request.Cookies["user"].Value == item.email)
+@foreach (var item in Model)
+{
+       if(Request.Cookies["user"] != null)
        {
-            <h2> Your Profile </h2>
-            <label class="cold-md-2 control-label"> Name: @Html.DisplayFor(modelItem => item.name) </label>
-            <br />
-            <label class="cold-md-2 control-label"> Address: @Html.DisplayFor(modelItem => item.address)</label>
-            <br />
-            <label class="cold-md-2 control-label"> City: @Html.DisplayFor(modelItem => item.city)</label>
-            <br />
-            <label class="cold-md-2 control-label"> State: @Html.DisplayFor(modelItem => item.state_province)</label>
-            <br />
-            <label class="cold-md-2 control-label"> Country: @Html.DisplayFor(modelItem => item.country)</label>
-            <br />
-            <label class="cold-md-2 control-label"> Phone Number: @Html.DisplayFor(modelItem => item.phone)</label>
-            <br />
-            <label class="cold-md-2 control-label"> Email Address: @Html.DisplayFor(modelItem => item.email)</label>
-            <br />
-            <label class="cold-md-2 control-label"> Password: @Html.DisplayFor(modelItem => item.password)</label>
+           if (Request.Cookies["user"].Value == item.email && Request.Cookies["user"].Value != null && item.email != null)
+            {
+                <h2> Your Profile </h2>
+                <label class="cold-md-2 control-label"> Name: @Html.DisplayFor(modelItem => item.name) </label>
+                <br />
+                <label class="cold-md-2 control-label"> Address: @Html.DisplayFor(modelItem => item.address)</label>
+                <br />
+                <label class="cold-md-2 control-label"> City: @Html.DisplayFor(modelItem => item.city)</label>
+                <br />
+                <label class="cold-md-2 control-label"> State: @Html.DisplayFor(modelItem => item.state_province)</label>
+                <br />
+                <label class="cold-md-2 control-label"> Country: @Html.DisplayFor(modelItem => item.country)</label>
+                <br />
+                <label class="cold-md-2 control-label"> Phone Number: @Html.DisplayFor(modelItem => item.phone)</label>
+                <br />
+                <label class="cold-md-2 control-label"> Email Address: @Html.DisplayFor(modelItem => item.email)</label>
+                <br />
+                <label class="cold-md-2 control-label"> Password: @Html.DisplayFor(modelItem => item.password)</label>
+            }
+       }
+       else
+       {
+          
+          <h2> You are no longer logged in. Please log back in. </h2>
+          break;
        }
        
 }
-<br />
-<br /> 
-@Html.ActionLink("Edit Profile", "EditUser")
+
+@if(Request.Cookies["user"] != null)
+{
+        <br />
+        <br />
+        @Html.ActionLink("Edit Profile", "EditUser")   
+}
+
