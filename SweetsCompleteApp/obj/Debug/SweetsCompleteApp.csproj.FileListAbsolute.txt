@@ -107,6 +107,7 @@ C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\Microso
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.dll
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.pdb
+C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.csprojResolveAssemblyReference.cache
 \\siam2\user\Jordan.Max\GitHub\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteApp\bin\SweetsCompleteApp.dll.config
 \\siam2\user\Jordan.Max\GitHub\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteApp\bin\SweetsCompleteApp.dll
 \\siam2\user\Jordan.Max\GitHub\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteApp\bin\SweetsCompleteApp.pdb
@@ -162,8 +163,11 @@ C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\S
 \\siam2\user\Jordan.Max\GitHub\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.csprojResolveAssemblyReference.cache
 \\siam2\user\Jordan.Max\GitHub\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.dll
 \\siam2\user\Jordan.Max\GitHub\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.pdb
+<<<<<<< HEAD
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedList.dll
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedList.Mvc.dll
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedList.xml
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedList.Mvc.xml
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.csprojResolveAssemblyReference.cache
+=======
+>>>>>>> parent of 99cd520... Paging! :D :dancer:
