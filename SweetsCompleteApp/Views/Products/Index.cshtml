@@ -46,6 +46,10 @@
                                              <img src="~/Content/Images_fixed/@(item.link).scale_20.jpg" width=" 190" height="130" />
                                              <p>
                                                  @Html.DisplayFor(modelItem => item.title)
+                                                 <br />
+                                                 @Html.DisplayFor(modelItem => item.price)
+                                                 <br />
+                                                 <button class="btn btn-default"> Add to Cart </button>
                                              </p>
                                         </div>
                                     </li>
