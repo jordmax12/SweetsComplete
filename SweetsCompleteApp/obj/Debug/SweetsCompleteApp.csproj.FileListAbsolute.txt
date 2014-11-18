@@ -56,3 +56,4 @@ C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\Microso
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.dll
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.pdb
+C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.csprojResolveAssemblyReference.cache
