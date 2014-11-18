@@ -18,6 +18,17 @@ namespace SweetsCompleteApp.Controllers
         {
             return View(db.products.ToList().ToPagedList(page ?? 1, 6));
         }
+        
+        public ActionResult Details(int prodID)
+        {
+            /*var memQuery = (from p in db.products
+                            where (p.product_id == prodID)
+                            select p.title).ToList();*/
+
+            IEnumerable<product> memQuery = db.products.Where(p => p.product_id == prodID);
+
+            return View(memQuery);
+        }
 
         /*[HttpGet]
         public ActionResult Details()

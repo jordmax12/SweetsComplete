@@ -19,17 +19,15 @@
         }
     </style>
 <h2 class="text-center">Our Products</h2>
-    <br />
+                     <br />
                      <input type="text" class="span2 search-query capitalizedText" id="que" name="query">
                      <button type="submit" class="btn">Search</button>
-    <br />
+                     <br />
                      <form role="form">
                          <ul style="list-style-type: none;">
                              <li style="display: inline-block;">
                                  <div class="radio col-sm-3">
                                      <h4>By Price</h4>
-                                     <!--<input type="radio" name="optradio"> Low <br />
-                                     <input type="radio" name="optradio"> High -->
                                      <div class="btn-group">
                                          <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
                                              <span class="caret"></span>
@@ -82,16 +80,18 @@
             {
                 <li style="display: inline-block;">
                     <div class="container">
-                        <img src="~/Content/Images_fixed/@(item.link).scale_20.jpg" width=" 190" height="130" />
+                        <a href="@Url.Action("Details", "Products", new { prodID = item.product_id })"><img src="~/Content/Images_fixed/@(item.link).scale_20.jpg" width=" 190" height="130" /></a>
                         <p>
                             @Html.DisplayFor(modelItem => item.title)
                             <br />
                             @Html.DisplayFor(modelItem => item.price)
                             <br />
                             <button class="btn btn-default"> Add to Cart </button>
+
                         </p>
                     </div>
                 </li>
+                <li></li>
             }
         </div>
     </ul>
