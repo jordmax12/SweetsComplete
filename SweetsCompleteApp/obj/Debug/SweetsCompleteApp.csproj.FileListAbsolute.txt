@@ -168,6 +168,11 @@ C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedLi
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedList.Mvc.dll
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedList.xml
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedList.Mvc.xml
+<<<<<<< HEAD
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.csprojResolveAssemblyReference.cache
 =======
 >>>>>>> parent of 99cd520... Paging! :D :dancer:
+=======
+C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\SweetsCompleteApp.dll.CodeAnalysisLog.xml
+C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\SweetsCompleteApp.dll.lastcodeanalysissucceeded
+>>>>>>> parent of 8073691... azure is stupid this works
