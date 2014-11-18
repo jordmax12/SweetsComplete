@@ -9,7 +9,7 @@
                 <span clas="sr-only">@Request.Cookies["user"].Value.ToString() </span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li> Edit User Profile </li>
+                <li> <a href="@Url.Action("Index", "Home")"> Past Orders </a></li>
             </ul>
         </div>
         <li>

@@ -4,6 +4,9 @@
     var temp = new HttpCookie("user");
     temp.Expires = DateTime.Now.AddDays(-1);
     Response.Cookies.Add(temp);
+    var temp2 = new HttpCookie("userID");
+    temp2.Expires = DateTime.Now.AddDays(-1);
+    Response.Cookies.Add(temp2);
     Response.Redirect("~/");
     
 }

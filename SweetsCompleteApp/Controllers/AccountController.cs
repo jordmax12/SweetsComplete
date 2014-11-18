@@ -90,6 +90,18 @@ namespace SweetsCompleteApp.Controllers
                     String loginCred = model.Email.Trim();
                     cookie.Value = loginCred;
                     cookie.Expires = DateTime.Now.AddSeconds(180);
+
+                    int userID = GrabUserID(model.Email.Trim(), model.Password.Trim());
+                    Console.WriteLine("test");
+
+                    if(userID != 0)
+                    {
+                        HttpCookie IDcookie = new HttpCookie("userID");
+                        IDcookie.Value = userID.ToString();
+                        cookie.Expires = DateTime.Now.AddSeconds(180);
+                        Response.Cookies.Add(IDcookie);
+                    }
+
                     Response.Cookies.Add(cookie);
                     return RedirectToAction("Index", "Home");
                 }
@@ -97,22 +109,63 @@ namespace SweetsCompleteApp.Controllers
                 {
 
                 }
-                /*var user = await UserManager.FindAsync(model.Email, model.Password);
-                if (user != null)
-                {
-                    await SignInAsync(user, model.RememberMe);
-                    return RedirectToLocal(returnUrl);
-                }
-                else
-                {
-                    ModelState.AddModelError("", "Invalid username or password.");
-                }*/
 
 
             }
 
             // If we got this far, something failed, redisplay form
             return View(model);
+        }
+
+        public int GrabUserID(string email, string password)
+        {
+            int returnUserId;
+
+            string connString = ConfigurationManager.ConnectionStrings[@"Users"].ConnectionString;
+            using (SqlConnection conn = new SqlConnection(connString))
+            {
+                conn.Open();
+
+                if (conn.State != System.Data.ConnectionState.Open)
+                {
+                    Console.WriteLine("Error in opening database connection!");
+                    return 0;
+                }
+
+                using (SqlCommand cmd = new SqlCommand("SELECT user_id FROM members WHERE email = @email AND password = @password", conn))
+                {
+                    SqlParameter emailP = new SqlParameter();
+                    emailP.ParameterName = "@email";
+                    emailP.Value = email;
+
+                    SqlParameter passP = new SqlParameter();
+                    passP.ParameterName = "@password";
+                    passP.Value = password;
+
+                    cmd.Parameters.Add(emailP);
+                    cmd.Parameters.Add(passP);
+
+                    cmd.ExecuteNonQuery();
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        if (rdr.Read())
+                        {
+                            //returnUserId = rdr[0];
+                            returnUserId = Convert.ToInt32(rdr["user_id"]);
+                            return returnUserId;
+                        }
+                        else
+                            return 0;
+                    }
+
+                    conn.Close();
+                }
+            }
+
+            return 0;
+
+
+
         }
 
         public bool CheckTheDB(string email, string password)
