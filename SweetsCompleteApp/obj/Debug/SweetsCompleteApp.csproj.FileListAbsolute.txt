@@ -166,5 +166,4 @@ C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedLi
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedList.Mvc.dll
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedList.xml
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\PagedList.Mvc.xml
-C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\SweetsCompleteApp.dll.CodeAnalysisLog.xml
-C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\SweetsCompleteApp.dll.lastcodeanalysissucceeded
+C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.csprojResolveAssemblyReference.cache
