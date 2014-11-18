@@ -1,31 +1,10 @@
-﻿@model IList<SweetsCompleteApp.product>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<SweetsCompleteApp.product>
 
 @{
     ViewBag.Title = "Products";
-    
-    var itemsPerPage = 6;
-    var x = 0;
-    var j = 1;
 
-
-
-    string url = HttpContext.Current.Request.Url.AbsoluteUri;
-    string fixedurl = Request.RawUrl.Split(new[] { '?' })[0];
-    string newParam = Request.Params["page"] ?? "0";
-    int getPageNum = Convert.ToInt32(newParam);
-    if(getPageNum == 0)
-    {
-        itemsPerPage = 6;
-    }
-    else if(getPageNum >= 1)
-    {
-        itemsPerPage = 6 * (getPageNum + 1); 
-    }
-
-    if (IsPost)
-    {
-        
-    }
 }
 
     <style>
@@ -33,14 +12,7 @@
             text-align: center;
         }
     </style>
-
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
 <h2 class="text-center">Our Products</h2>
-<<<<<<< HEAD
 <input type="text" class="span2 search-query capitalizedText" id="que" name="query">
 <button type="submit" class="btn">Search</button>
 <div class="container" style="width: 100%;">
@@ -64,22 +36,8 @@
         </div>
     </ul>
 </div>
-=======
->>>>>>> parent of 8073691... azure is stupid this works
 
-
-=======
-
->>>>>>> parent of 8073691... azure is stupid this works
-=======
-
->>>>>>> parent of 8073691... azure is stupid this works
-=======
-
->>>>>>> parent of 8073691... azure is stupid this works
-=======
-
->>>>>>> parent of 8073691... azure is stupid this works
+                     @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
 
 
 

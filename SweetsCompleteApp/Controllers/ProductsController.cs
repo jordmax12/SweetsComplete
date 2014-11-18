@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList.Mvc;
+using PagedList;
 
 namespace SweetsCompleteApp.Controllers
 {
@@ -12,29 +14,9 @@ namespace SweetsCompleteApp.Controllers
         UsersEntities db = new UsersEntities();
 
 
-        public ActionResult Index(string submit)
+        public ActionResult Index(string searchBy, string search, int? page)
         {
-            string fixedurl = Request.RawUrl.Split(new[] { '?' })[0];
-            string newParam = Request.Params["page"] ?? "0";;
-            int getPageNum = Convert.ToInt32(newParam);
-
-            switch (submit)
-            {
-
-                case "prev":
-                    // Do something
-
-                    Response.Redirect(fixedurl + "?page=" + (getPageNum - 1));
-                    break;
-                case "next":
-                    // Do something
-                    Response.Redirect(fixedurl + "?page=" + (getPageNum + 1));
-                    break;
-                default:
-                    //throw new Exception();
-                    break;
-            }
-            return View(db.products.ToList());
+            return View(db.products.ToList().ToPagedList(page ?? 1, 6));
         }
 
         /*[HttpGet]
