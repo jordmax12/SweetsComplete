@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList.Mvc;
+using PagedList;
 
 namespace SweetsCompleteApp.Controllers
 {
@@ -12,9 +14,11 @@ namespace SweetsCompleteApp.Controllers
         UsersEntities db = new UsersEntities();
 
 
-        public ActionResult Index(string submit)
+        public ActionResult Index(string searchBy, string search, int? page)
         {
-            string fixedurl = Request.RawUrl.Split(new[] { '?' })[0];
+            /*string submit for params if i use below code
+             * 
+             * string fixedurl = Request.RawUrl.Split(new[] { '?' })[0];
             string newParam = Request.Params["page"] ?? "0";;
             int getPageNum = Convert.ToInt32(newParam);
 
@@ -34,7 +38,12 @@ namespace SweetsCompleteApp.Controllers
                     //throw new Exception();
                     break;
             }
-            return View(db.products.ToList());
+             *return View(db.products.ToList());
+             *
+             */
+
+            return View(db.products.ToList().ToPagedList(page ?? 1, 6));
+
         }
 
         /*[HttpGet]
