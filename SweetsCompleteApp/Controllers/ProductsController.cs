@@ -30,6 +30,18 @@ namespace SweetsCompleteApp.Controllers
             return View(memQuery);
         }
 
+        public ActionResult PastPurchases(int userID)
+        {
+          /* var memQuery = from m in db.members
+                                            join fp in db.fixed_purchases
+                                            on m.user_id
+                                            equals fp.user_id
+                                            group fp.purchase_id by fp.user_id;*/
+
+            IEnumerable<fixed_purchases> memQuery = db.fixed_purchases.Where(fp => fp.user_id == userID);
+            return View(memQuery);
+        }
+
         /*[HttpGet]
         public ActionResult Details()
         {

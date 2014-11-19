@@ -9,7 +9,11 @@
                 <span clas="sr-only">@Request.Cookies["user"].Value.ToString() </span>
             </button>
             <ul class="dropdown-menu" role="menu">
-                <li> <a href="@Url.Action("Index", "Home")"> Past Orders </a></li>
+                @{
+                    var userID = Request.Cookies["userID"].Value.ToString();
+                    int userIDToInt = Convert.ToInt32(userID);
+                }
+                <li> <a href="@Url.Action("PastPurchases", "Products",  new { userID = userIDToInt })"> Past Orders </a></li>
             </ul>
         </div>
         <li>
