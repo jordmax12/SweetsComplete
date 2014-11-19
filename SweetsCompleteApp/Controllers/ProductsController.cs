@@ -56,6 +56,12 @@ namespace SweetsCompleteApp.Controllers
             return View(grabProducts.ToList().ToPagedList(page ?? 1, 6));
         }
 
+        public ActionResult SortBySpecial(int? page)
+        {
+            var grabProducts = db.products.Where(p => p.special == 1).OrderBy(p => p.price);
+            return View(grabProducts.ToList().ToPagedList(page ?? 1, 6));
+        }
+
         /*[HttpGet]
         public ActionResult Details()
         {
