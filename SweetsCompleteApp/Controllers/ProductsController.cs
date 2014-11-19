@@ -42,6 +42,13 @@ namespace SweetsCompleteApp.Controllers
             return View(memQuery);
         }
 
+        public ActionResult SortByHighest(int? page)
+        {
+            //IEnumerable<fixed_purchases> memQuery = db.fixed_purchases.
+            var grabProducts = db.products.OrderBy(p => p.price);
+            return View(grabProducts.ToList().ToPagedList(page ?? 1, 6));
+        }
+
         /*[HttpGet]
         public ActionResult Details()
         {
