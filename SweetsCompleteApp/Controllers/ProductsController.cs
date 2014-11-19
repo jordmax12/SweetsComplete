@@ -64,9 +64,20 @@ namespace SweetsCompleteApp.Controllers
 
         public ActionResult SortByMost(int? page)
         {
-            var grabProducts = db.fixed_purchases.GroupBy(fp => fp.product_id)
-                .OrderByDescending(g => g.Count())
-                .Select(g => g.Key);
+            /*var grabProducts = db.fixed_purchases.GroupBy(fp => fp.product_id)
+                .OrderByDescending(g => g.Count());*/
+            List<product> prods = db.products.ToList();
+            List<fixed_purchases> fpurchs = db.fixed_purchases.ToList();
+            var grabProducts = prods
+                .Join(fpurchs, p => p.product_id, fpurch => fpurch.product_id, (prod, fpurch) => new { db.products })
+                .OrderByDescending(j => j.Count(fpurchs => fpurchs.product_id);
+                
+
+            //var grabProducts = db.products.Select(p => p.product_id)
+            //    .Join(db.fixed_purchases,  );
+                                
+                
+                //.Join(db.fixed_purchases, fp => fp.product_id == x);
             return View(grabProducts.ToList().ToPagedList(page ?? 1, 6));
         }
 
