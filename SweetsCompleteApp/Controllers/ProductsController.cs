@@ -65,8 +65,7 @@ namespace SweetsCompleteApp.Controllers
         public ActionResult SortByMost(int? page)
         {
             var grabProducts = db.fixed_purchases.GroupBy(fp => fp.product_id)
-                .OrderByDescending(g => g.Count())
-                .ToList();
+                .OrderByDescending(g => g.Count());
                 
                 
                 
