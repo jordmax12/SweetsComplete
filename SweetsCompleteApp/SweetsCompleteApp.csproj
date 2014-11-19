@@ -338,6 +338,7 @@
     <Content Include="Views\Products\PastPurchases.cshtml" />
     <Content Include="Views\Products\SortByHighest.cshtml" />
     <Content Include="Views\Products\SortByLower.cshtml" />
+    <Content Include="Views\Products\SortBySpecial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
