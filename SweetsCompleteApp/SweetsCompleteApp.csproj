@@ -339,6 +339,7 @@
     <Content Include="Views\Products\SortByHighest.cshtml" />
     <Content Include="Views\Products\SortByLower.cshtml" />
     <Content Include="Views\Products\SortBySpecial.cshtml" />
+    <Content Include="Views\Products\SortByMost.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

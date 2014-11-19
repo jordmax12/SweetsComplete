@@ -14,6 +14,7 @@ namespace SweetsCompleteApp
     
     public partial class fixed_purchases
     {
+        public int Count { get; set; }
         public int purchase_id { get; set; }
         public string trans_id { get; set; }
         public int product_id { get; set; }

@@ -14,5 +14,7 @@ namespace SweetsCompleteApp.Models
         public float price { get; set; }
         public int special { get; set; }
         public string link { get; set; }
+
+        public int Count { get; set; }
     }
 }
