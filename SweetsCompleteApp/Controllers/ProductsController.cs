@@ -65,10 +65,15 @@ namespace SweetsCompleteApp.Controllers
         public ActionResult SortByMost(int? page)
         {
             var grabProducts = db.fixed_purchases.GroupBy(fp => fp.product_id)
-                .Select(fp => new fixed_purchases
+                .OrderByDescending(g => g.Count())
+                .ToList();
+                
+                
+                
+                /*.Select(fp => new fixed_purchases
                 {
                     Count = fp.Count()
-                }).ToList();
+                }).ToList();*/
                 
                 
                 
