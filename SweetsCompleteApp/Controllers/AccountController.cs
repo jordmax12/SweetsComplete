@@ -74,6 +74,27 @@ namespace SweetsCompleteApp.Controllers
         }
 
         //
+        // GET: /Account/Logoff
+        [AllowAnonymous]
+        public ActionResult ShoppingCart(string returnUrl)
+        {
+            ViewBag.ReturnUrl = returnUrl;
+            Session["foo"] = "bar";
+            if(Session != null && Session["foof"] != null)
+            {
+
+                Console.WriteLine("yay");
+            }
+            return View();
+        }
+        [HttpPost]
+        [AllowAnonymous]
+        public ActionResult ShoppingCart()
+        {
+            return View();
+        }
+
+        //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]

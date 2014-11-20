@@ -16,6 +16,7 @@
                 <li> <a href="@Url.Action("PastPurchases", "Products",  new { userID = userIDToInt })"> Past Orders </a></li>
             </ul>
         </div>
+        <li>@Html.ActionLink("Shopping Cart", "Index", "Members")</li>
         <li>
             @{
                  string user = Request.Cookies["user"].Value.ToString();
@@ -29,6 +30,7 @@
 else
 {
     <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Shopping Cart", "ShoppingCart", "Account")</li>
         <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
         <li>@Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
     </ul>

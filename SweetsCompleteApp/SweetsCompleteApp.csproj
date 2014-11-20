@@ -340,6 +340,7 @@
     <Content Include="Views\Products\SortByLower.cshtml" />
     <Content Include="Views\Products\SortBySpecial.cshtml" />
     <Content Include="Views\Products\SortByMost.cshtml" />
+    <Content Include="Views\Account\ShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -20,37 +20,24 @@ namespace SweetsCompleteApp.Controllers
         
         public ActionResult Details(int prodID)
         {
-            /*var memQuery = (from p in db.products
-                            where (p.product_id == prodID)
-                            select p.title).ToList();*/
-
             IEnumerable<product> memQuery = db.products.Where(p => p.product_id == prodID);
-
             return View(memQuery);
         }
 
         public ActionResult PastPurchases(int userID)
         {
-          /* var memQuery = from m in db.members
-                                            join fp in db.fixed_purchases
-                                            on m.user_id
-                                            equals fp.user_id
-                                            group fp.purchase_id by fp.user_id;*/
-
             IEnumerable<fixed_purchases> memQuery = db.fixed_purchases.Where(fp => fp.user_id == userID);
             return View(memQuery);
         }
 
         public ActionResult SortByHighest(int? page)
         {
-            //IEnumerable<fixed_purchases> memQuery = db.fixed_purchases.
             var grabProducts = db.products.OrderByDescending(p => p.price);
             return View(grabProducts.ToList().ToPagedList(page ?? 1, 6));
         }
 
         public ActionResult SortByLower(int? page)
         {
-            //IEnumerable<fixed_purchases> memQuery = db.fixed_purchases.
             var grabProducts = db.products.OrderBy(p => p.price);
             return View(grabProducts.ToList().ToPagedList(page ?? 1, 6));
         }
@@ -67,27 +54,20 @@ namespace SweetsCompleteApp.Controllers
             var grabProducts = (from p in db.products
                                 join fp in db.fixed_purchases
                                 on p.product_id equals fp.product_id
-                                group p by fp into g
-                                select new { prodID = g.Key, Count = g.Distinct().Count(), Products = g }
+                                group p by fp.product_id into g
+                                select new { prodID = g.Key, Count = g.Count(), Products = g }
                                     );
  
-             foreach(var h in grabProducts.OrderByDescending(x => x.Count))
+             /*foreach(var h in grabProducts.OrderByDescending(x => x.Count))
              {
                  foreach(var n in h.Products)
                  {
                      mostList.Add(n);
                  }
-                 //mostList = h.Products.OrderByDescending(y => y.product_id).ToList();
-             }
-                //.OrderByDescending(fpurchs.Count(fp => fp.product_id));
-                
+             }*/
 
-            //var grabProducts = db.products.Select(p => p.product_id)
-            //    .Join(db.fixed_purchases,  );
-                                
-                
-                //.Join(db.fixed_purchases, fp => fp.product_id == x);
-             return View(mostList.ToList().ToPagedList(page ?? 1, 6));
+             grabProducts.OrderByDescending(x => x.Count).ToList().ForEach(q => q.Products.ToList().ForEach(w => mostList.Add(w)));
+             return View(mostList.ToPagedList(page ?? 1, 6));
         }
 
         public ActionResult SortByLeast(int? page)
@@ -96,12 +76,6 @@ namespace SweetsCompleteApp.Controllers
             return View();
         }
 
-        /*[HttpGet]
-        public ActionResult Details()
-        {
-            return View();
-        }
-        [HttpPost]*/
         [HttpGet]
         public ActionResult Create()
         {
