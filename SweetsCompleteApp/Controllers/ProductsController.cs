@@ -57,14 +57,6 @@ namespace SweetsCompleteApp.Controllers
                                 group p by fp.product_id into g
                                 select new { prodID = g.Key, Count = g.Count(), Products = g }
                                     );
- 
-             /*foreach(var h in grabProducts.OrderByDescending(x => x.Count))
-             {
-                 foreach(var n in h.Products)
-                 {
-                     mostList.Add(n);
-                 }
-             }*/
 
              grabProducts.OrderByDescending(x => x.Count).ToList().ForEach(q => q.Products.ToList().ForEach(w => mostList.Add(w)));
              return View(mostList.ToPagedList(page ?? 1, 6));
@@ -72,8 +64,16 @@ namespace SweetsCompleteApp.Controllers
 
         public ActionResult SortByLeast(int? page)
         {
+            var mostList = new List<product>();
+            var grabProducts = (from p in db.products
+                                join fp in db.fixed_purchases
+                                on p.product_id equals fp.product_id
+                                group p by fp.product_id into g
+                                select new { prodID = g.Key, Count = g.Count(), Products = g }
+                                    );
 
-            return View();
+            grabProducts.OrderBy(x => x.Count).ToList().ForEach(q => q.Products.ToList().ForEach(w => mostList.Add(w)));
+            return View(mostList.ToPagedList(page ?? 1, 6));
         }
 
         [HttpGet]
