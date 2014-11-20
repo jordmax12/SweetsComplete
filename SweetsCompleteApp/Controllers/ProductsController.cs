@@ -68,9 +68,16 @@ namespace SweetsCompleteApp.Controllers
                 .OrderByDescending(g => g.Count());*/
             List<product> prods = db.products.ToList();
             List<fixed_purchases> fpurchs = db.fixed_purchases.ToList();
-            var grabProducts = prods
-                .Join(fpurchs, p => p.product_id, fpurch => fpurch.product_id, (prod, fpurch) => new { db.products })
-                .OrderByDescending(j => j.Count(fpurchs => fpurchs.product_id);
+            var grabProducts = (from p in db.products
+                                join fp in db.fixed_purchases
+                                on p.product_id equals fp.product_id
+                                orderby fp.product_id.Count() descending
+                                select p    
+                                    );
+
+                
+                
+                //.OrderByDescending(fpurchs.Count(fp => fp.product_id));
                 
 
             //var grabProducts = db.products.Select(p => p.product_id)

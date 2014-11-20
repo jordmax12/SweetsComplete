@@ -57,7 +57,6 @@ C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\Microso
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.dll
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.pdb
 C:\Users\Jordan\Documents\GitHub\SweetsCompleteASP\SweetsCompleteApp\obj\Debug\SweetsCompleteApp.csprojResolveAssemblyReference.cache
-\\siam2\user\Jordan.Max\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\SweetsCompleteApp.dll.config
 \\siam2\user\Jordan.Max\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\SweetsCompleteApp.dll
 \\siam2\user\Jordan.Max\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\SweetsCompleteApp.pdb
 \\siam2\user\Jordan.Max\GitHub\SweetsCompleteASP\SweetsCompleteApp\bin\Antlr3.Runtime.dll
