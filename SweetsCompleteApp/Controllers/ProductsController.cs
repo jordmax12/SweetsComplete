@@ -13,7 +13,6 @@ namespace SweetsCompleteApp.Controllers
     {
         UsersEntities db = new UsersEntities();
 
-
         public ActionResult Index(string searchBy, string search, int? page)
         {
             return View(db.products.ToList().ToPagedList(page ?? 1, 6));
@@ -64,19 +63,22 @@ namespace SweetsCompleteApp.Controllers
 
         public ActionResult SortByMost(int? page)
         {
-            /*var grabProducts = db.fixed_purchases.GroupBy(fp => fp.product_id)
-                .OrderByDescending(g => g.Count());*/
-            List<product> prods = db.products.ToList();
-            List<fixed_purchases> fpurchs = db.fixed_purchases.ToList();
+            var mostList = new List<product>();
             var grabProducts = (from p in db.products
                                 join fp in db.fixed_purchases
                                 on p.product_id equals fp.product_id
-                                orderby fp.product_id.Count() descending
-                                select p    
+                                group p by fp into g
+                                select new { prodID = g.Key, Count = g.Distinct().Count(), Products = g }
                                     );
-
-                
-                
+ 
+             foreach(var h in grabProducts.OrderByDescending(x => x.Count))
+             {
+                 foreach(var n in h.Products)
+                 {
+                     mostList.Add(n);
+                 }
+                 //mostList = h.Products.OrderByDescending(y => y.product_id).ToList();
+             }
                 //.OrderByDescending(fpurchs.Count(fp => fp.product_id));
                 
 
@@ -85,7 +87,7 @@ namespace SweetsCompleteApp.Controllers
                                 
                 
                 //.Join(db.fixed_purchases, fp => fp.product_id == x);
-            return View(grabProducts.ToList().ToPagedList(page ?? 1, 6));
+             return View(mostList.ToList().ToPagedList(page ?? 1, 6));
         }
 
         public ActionResult SortByLeast(int? page)
