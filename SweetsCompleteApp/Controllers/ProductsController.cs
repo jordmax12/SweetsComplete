@@ -12,9 +12,10 @@ namespace SweetsCompleteApp.Controllers
     public class ProductsController : Controller
     {
         UsersEntities db = new UsersEntities();
-
+        //Session["myIds"] = new Sessio;
         public ActionResult Index(string searchBy, string search, int? page)
         {
+
             return View(db.products.ToList().ToPagedList(page ?? 1, 6));
         }
         
@@ -125,6 +126,40 @@ namespace SweetsCompleteApp.Controllers
             prods.Add(vanilla);
 
             return View(prods);
+        }
+
+        public ActionResult TestSession(List<int> prodID)
+        {
+           // List<int> ids = 
+                
+                //new List<int> { 1, 2, 3, 4, 5 };
+            if (Session["myIds"] != null)
+            {
+                (Session["myIds"] as List<int>).AddRange(prodID);
+            }
+            else
+            {
+                Session["myIds"] = prodID;
+            }
+
+            //return RedirectToAction("Index");
+            return RedirectToAction("ShoppingCart", "Account");
+        }
+
+        public ActionResult TestSession2(List<int> prodID)
+        {
+
+
+            if (Session["myIds"] != null)
+            {
+                (Session["myIds"] as List<int>).AddRange(prodID);
+            }
+            else
+            {
+                Session["myIds"] = prodID;
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

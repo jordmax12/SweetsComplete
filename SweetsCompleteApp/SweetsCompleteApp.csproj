@@ -215,6 +215,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\custom.css" />
     <Content Include="Content\Images\167_2835774.JPG" />
     <Content Include="Content\Images\167_2835774.scale_10.JPG" />
     <Content Include="Content\Images\167_2835774.scale_20.JPG" />

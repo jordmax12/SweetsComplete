@@ -15,6 +15,8 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
+using PagedList.Mvc;
+using PagedList;
 
 namespace SweetsCompleteApp.Controllers
 {
@@ -22,7 +24,8 @@ namespace SweetsCompleteApp.Controllers
     public class AccountController : Controller
     {
         private ApplicationUserManager _userManager;
-        
+        UsersEntities db = new UsersEntities();
+        List<int> prodIds = new List<int>();
         public AccountController()
         {
         }
@@ -76,15 +79,32 @@ namespace SweetsCompleteApp.Controllers
         //
         // GET: /Account/Logoff
         [AllowAnonymous]
-        public ActionResult ShoppingCart(string returnUrl)
+        public ActionResult ShoppingCart(string returnUrl, int? page)
         {
-            ViewBag.ReturnUrl = returnUrl;
-            Session["foo"] = "bar";
-            if(Session != null && Session["foof"] != null)
+            if (Session != null)
             {
+                List<int> ids = Session["myIds"] != null ? (List<int>)Session["myIds"] : null;
+                if (ids != null)
+                {
+                    foreach (int id in ids)
+                    {
+                        prodIds.Add(id);
+                    }
 
-                Console.WriteLine("yay");
+                    var products = prodIds.Cast<int>().ToList();
+                    var grabProducts = db.products.OrderBy(p => p.product_id).Where(p => products.Contains(p.product_id));
+                    return View(grabProducts.ToPagedList(page ?? 1, 6));
+                }
             }
+            else
+            {
+                int newd = 0;
+                var grabProducts = db.products.Where(p => p.product_id == newd).OrderBy(p => p.price);
+                return View(grabProducts.ToList().ToPagedList(page ?? 1, 6));
+            }
+            ViewBag.ReturnUrl = returnUrl;
+
+
             return View();
         }
         [HttpPost]
