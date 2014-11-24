@@ -5,6 +5,8 @@ using System.Web;
 using System.Web.Mvc;
 using System.Globalization;
 using System.Threading.Tasks;
+using PagedList.Mvc;
+using PagedList;
 
 namespace SweetsCompleteApp.Controllers
 {
@@ -13,9 +15,9 @@ namespace SweetsCompleteApp.Controllers
         UsersEntities db = new UsersEntities();
         //
         // GET: /Members/
-        public ActionResult Index()
+        public ActionResult Index(int? page)
         {
-            return View(db.members.ToList());
+            return View(db.members.ToList().ToPagedList(page ?? 1, 6));
         }
 
         // GET: /Account/Edit

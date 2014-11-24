@@ -1,5 +1,6 @@
-﻿@model IEnumerable<SweetsCompleteApp.member>
-
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<SweetsCompleteApp.member>
 @{
     ViewBag.Title = "Members";
     
@@ -25,25 +26,25 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.name)
+            Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.address)
+            Address
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.city)
+            City
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.state_province)
+            State/Province
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.country)
+            Country
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.phone)
+            Phone Number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.balance)
+            Account Balance
         </th>
         <th></th>
     </tr>
@@ -115,3 +116,5 @@
 }
 
 </table>
+
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
