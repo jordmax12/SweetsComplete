@@ -25,10 +25,34 @@ namespace SweetsCompleteApp.Controllers
             return View(memQuery);
         }
 
-        public ActionResult PastPurchases(int userID)
+        public ActionResult PastPurchases(int userID, int? page)
         {
-            IEnumerable<fixed_purchases> memQuery = db.fixed_purchases.Where(fp => fp.user_id == userID);
-            return View(memQuery);
+            var memQuery = db.fixed_purchases.Where(fp => fp.user_id == userID);
+
+            if(Request.Params["filter"] != null)
+            {
+                if (Request.Params["filter"] == "SortByRecent")
+                {
+                    var newMemQuery = db.fixed_purchases.Where(fp => fp.user_id == userID).OrderByDescending(fp => fp.date);
+                    return View(newMemQuery.ToList().ToPagedList(page ?? 1, 10));
+                }
+                else if (Request.Params["filter"] == "OppSortByRecent")
+                {
+                    var newMemQuery = db.fixed_purchases.Where(fp => fp.user_id == userID).OrderBy(fp => fp.date);
+                    return View(newMemQuery.ToList().ToPagedList(page ?? 1, 10));
+                }
+                else
+                {
+                    return View(memQuery.ToList().ToPagedList(page ?? 1, 10));
+                }
+                
+            }
+            else
+            {
+                
+                return View(memQuery.ToList().ToPagedList(page ?? 1, 10));
+            }
+
         }
 
         public ActionResult SortByHighest(int? page)
@@ -128,7 +152,7 @@ namespace SweetsCompleteApp.Controllers
             return View(prods);
         }
 
-        public ActionResult TestSession(List<int> prodID)
+        public ActionResult ShoppingCartController(List<int> prodID)
         {
            // List<int> ids = 
                 
@@ -144,22 +168,6 @@ namespace SweetsCompleteApp.Controllers
 
             //return RedirectToAction("Index");
             return RedirectToAction("ShoppingCart", "Account");
-        }
-
-        public ActionResult TestSession2(List<int> prodID)
-        {
-
-
-            if (Session["myIds"] != null)
-            {
-                (Session["myIds"] as List<int>).AddRange(prodID);
-            }
-            else
-            {
-                Session["myIds"] = prodID;
-            }
-
-            return RedirectToAction("Index");
         }
     }
 }

@@ -1,30 +1,56 @@
-﻿@model IEnumerable<SweetsCompleteApp.fixed_purchases>
+﻿@using PagedList.Mvc;
+@using PagedList;
+@model IPagedList<SweetsCompleteApp.fixed_purchases>
 
 @{
-    ViewBag.Title = "PastPurchases";
+    ViewBag.Title = "Past Purchases";
 }
 
-<h2>PastPurchases</h2>
+<h2>Past Purchases</h2>
+
+<form role="form">
+    <ul style="list-style-type: none;">
+        <li style="display: inline-block;">
+            <div class="radio col-sm-3">
+                <h4>Filter By Date</h4>
+                <div class="btn-group">
+                    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#">
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @{
+                            var userID = Request.Cookies["userID"].Value.ToString();
+                            int userIDToInt = Convert.ToInt32(userID);
+                        }
+                        <li><a href="@Url.Action("PastPurchases", "Products", new { userID = userIDToInt, filter = "SortByRecent"  })"><i>Most Recent</i></i></a></li>
+                        <li class="divider"></li>
+                        <li><a href="@Url.Action("PastPurchases", "Products", new { userID = userIDToInt, filter = "OppSortByRecent" })"><i class=" icon-trash"></i>Least Recent</a></li>
+                    </ul>
+                </div>
+            </div>
+        </li>
+    </ul>
+</form>
 
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.trans_id)
+            Transaction ID
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.date)
+            Date
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.quantity)
+            Quantity
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.sale_price)
+            Sale Price
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.member.name)
+            Member Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.product.sku)
+            SKU
         </th>
         <th></th>
     </tr>
@@ -53,3 +79,4 @@
 }
 
 </table>
+@Html.PagedListPager(Model, page => Url.Action("PastPurchases", new { page }))
