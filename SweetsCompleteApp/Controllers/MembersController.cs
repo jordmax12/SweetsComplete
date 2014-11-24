@@ -17,7 +17,18 @@ namespace SweetsCompleteApp.Controllers
         // GET: /Members/
         public ActionResult Index(int? page)
         {
-            return View(db.members.ToList().ToPagedList(page ?? 1, 6));
+            if (Request.Params["query"] != null)
+            {
+                string query = Request.Params["query"];
+                var grabMembers = db.members.Where(m => m.name.Contains(query) || m.state_province.Contains(query) || m.country.Contains(query) || m.address.Contains(query) || m.country.Contains(query));
+                return View(grabMembers.ToList().ToPagedList(page ?? 1, 6));
+            }
+            else
+            {
+                return View(db.members.ToList().ToPagedList(page ?? 1, 6));
+            }
+            
+            
         }
 
         // GET: /Account/Edit
