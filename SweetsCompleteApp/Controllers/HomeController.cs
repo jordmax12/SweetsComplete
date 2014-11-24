@@ -3,15 +3,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using PagedList.Mvc;
+using PagedList;
 
 namespace SweetsCompleteApp.Controllers
 {
     [RequireHttps]
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        UsersEntities db = new UsersEntities();
+        public ActionResult Index(int? page)
         {
-            return View();
+            var grabProducts = db.products.Where(p => p.special == 1).OrderBy(p => p.price);
+            return View(grabProducts.ToList().ToPagedList(page ?? 1, 3));
         }
 
         public ActionResult About()
