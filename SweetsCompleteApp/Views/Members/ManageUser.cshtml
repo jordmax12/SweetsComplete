@@ -1,4 +1,7 @@
-﻿@model IEnumerable<SweetsCompleteApp.member>
+﻿@using PagedList.Mvc;
+@using PagedList;
+
+@model IPagedList<SweetsCompleteApp.ViewModel.ManageFPViewModel>
 
 @{
     ViewBag.Title = "ManageUser";
@@ -9,42 +12,42 @@
     <h2>Manage User</h2>
 }
 
-@foreach (var item in Model)
-{
-       if(Request.Cookies["user"] != null)
-       {
-           if (Request.Cookies["user"].Value == item.email && Request.Cookies["user"].Value != null && item.email != null)
-            {
-                <h2> Your Profile </h2>
-                <label class="cold-md-2 control-label"> Name: @Html.DisplayFor(modelItem => item.name) </label>
-                <br />
-                <label class="cold-md-2 control-label"> Address: @Html.DisplayFor(modelItem => item.address)</label>
-                <br />
-                <label class="cold-md-2 control-label"> City: @Html.DisplayFor(modelItem => item.city)</label>
-                <br />
-                <label class="cold-md-2 control-label"> State: @Html.DisplayFor(modelItem => item.state_province)</label>
-                <br />
-                <label class="cold-md-2 control-label"> Country: @Html.DisplayFor(modelItem => item.country)</label>
-                <br />
-                <label class="cold-md-2 control-label"> Phone Number: @Html.DisplayFor(modelItem => item.phone)</label>
-                <br />
-                <label class="cold-md-2 control-label"> Email Address: @Html.DisplayFor(modelItem => item.email)</label>
-                <br />
-                <label class="cold-md-2 control-label"> Password: @Html.DisplayFor(modelItem => item.password)</label>
-            }
-       }
-       else
-       {
-          <h2> You are no longer logged in. Please log back in. </h2>
-          break;
-       }
-       
-}
+<div class="container">
+    <div class="container" style="width: 30%; margin-left: auto; margin-right: auto; float: left;">
+        <h2> Your Profile </h2>
 
-@if(Request.Cookies["user"] != null)
-{
-        <br />
-        <br />
-        @Html.ActionLink("Edit Profile", "EditUser")   
-}
+                <label class="cold-md-2 control-label"> Name: @Html.DisplayFor(modelItem => Model.First().member.name) </label>
+                <br />
+                <label class="cold-md-2 control-label"> Address: @Html.DisplayFor(modelItem => Model.First().member.address)</label>
+                <br />
+                <label class="cold-md-2 control-label"> City: @Html.DisplayFor(modelItem => Model.First().member.city)</label>
+                <br />
+                <label class="cold-md-2 control-label"> State: @Html.DisplayFor(modelItem => Model.First().member.state_province)</label>
+                <br />
+                <label class="cold-md-2 control-label"> Country: @Html.DisplayFor(modelItem => Model.First().member.country)</label>
+                <br />
+                <label class="cold-md-2 control-label"> Phone Number: @Html.DisplayFor(modelItem => Model.First().member.phone)</label>
+                <br />
+                <label class="cold-md-2 control-label"> Email Address: @Html.DisplayFor(modelItem => Model.First().member.email)</label>
+                <br />
+                <label class="cold-md-2 control-label"> Password: @Html.DisplayFor(modelItem => Model.First().member.password)</label>
+
+
+        @if (Request.Cookies["user"] != null)
+        {
+            <br />
+            <br />
+            @Html.ActionLink("Edit Profile", "EditUser")
+        }
+    </div>
+    <div class="container" style="width: 30%; margin-left: auto; margin-right: auto; float: right;">
+        <h2> Recent Orders </h2>
+       @foreach (var item in Model)
+       {
+        <label class="cold-md-2 control-label"> Product ID: @Html.DisplayFor(modelItem => item.fixed_purchases.product_id)</label>
+        
+       }
+        @Html.PagedListPager(Model, page => Url.Action("ManageUser", new { page }))
+    </div>
+</div>
 

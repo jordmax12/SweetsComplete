@@ -7,6 +7,7 @@ using System.Globalization;
 using System.Threading.Tasks;
 using PagedList.Mvc;
 using PagedList;
+using SweetsCompleteApp.ViewModel;
 
 namespace SweetsCompleteApp.Controllers
 {
@@ -33,10 +34,27 @@ namespace SweetsCompleteApp.Controllers
 
         // GET: /Account/Edit
         [AllowAnonymous]
-        public ActionResult ManageUser(string returnUrl)
+        public ActionResult ManageUser(string returnUrl, int? page)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View(db.members.ToList());
+
+            if (Request.Cookies["user"] != null)
+            {
+                string user = Request.Cookies["user"].Value.ToString();
+                //var grabMems = db.members.Join(db.fixed_purchases, m => m.user_id, fp => fp.user_id, (m, fp) => new { M = m, FP = fp.product_id, FP2 = fp.purchase_id }).Where(mfp => mfp.M.email == user);
+                var grabMems =
+                    from m in db.members
+                    join fp in db.fixed_purchases on m.user_id equals fp.user_id
+                    where m.email == user
+                    select new ManageFPViewModel { fixed_purchases = fp, member = m };
+
+                return View(grabMems.ToList().ToPagedList(page ?? 1, 6));
+            }
+            else
+            {
+                return View(db.members.ToList());
+            }
+            
         }
 
         // GET: /Account/Edit
