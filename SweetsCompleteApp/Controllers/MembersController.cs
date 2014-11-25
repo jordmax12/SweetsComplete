@@ -41,14 +41,14 @@ namespace SweetsCompleteApp.Controllers
             if (Request.Cookies["user"] != null)
             {
                 string user = Request.Cookies["user"].Value.ToString();
-                //var grabMems = db.members.Join(db.fixed_purchases, m => m.user_id, fp => fp.user_id, (m, fp) => new { M = m, FP = fp.product_id, FP2 = fp.purchase_id }).Where(mfp => mfp.M.email == user);
                 var grabMems =
                     from m in db.members
                     join fp in db.fixed_purchases on m.user_id equals fp.user_id
+                    join p in db.products on fp.product_id equals p.product_id
                     where m.email == user
-                    select new ManageFPViewModel { fixed_purchases = fp, member = m };
+                    select new ManageFPViewModel { fixed_purchases = fp, member = m, product = p };
 
-                return View(grabMems.ToList().ToPagedList(page ?? 1, 6));
+                return View(grabMems.ToList().ToPagedList(page ?? 1, 4));
             }
             else
             {

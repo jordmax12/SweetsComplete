@@ -42,12 +42,20 @@
     </div>
     <div class="container" style="width: 30%; margin-left: auto; margin-right: auto; float: right;">
         <h2> Recent Orders </h2>
-       @foreach (var item in Model)
-       {
-        <label class="cold-md-2 control-label"> Product ID: @Html.DisplayFor(modelItem => item.fixed_purchases.product_id)</label>
-        
-       }
-        @Html.PagedListPager(Model, page => Url.Action("ManageUser", new { page }))
-    </div>
+               @foreach (var item in Model)
+               {
+                <tr>
+                    <td class="col-sm-8 col-md-6">
+                        <div class="media">
+                            <a class="thumbnail pull-left" href="#"> <img class="media-object" src="~/Content/Images_fixed/@(item.product.link).scale_20.jpg" style="width: 72px; height: 72px;"> </a>
+                            <div class="media-body">
+                                <h4 class="media-heading"><a href="#">@Html.DisplayFor(modelItem => item.product.title)</a></h4>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                }
+                    @Html.PagedListPager(Model, page => Url.Action("ManageUser", new { page }))
+</div>
 </div>
 

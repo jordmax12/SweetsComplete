@@ -9,5 +9,6 @@ namespace SweetsCompleteApp.ViewModel
     {
         public fixed_purchases fixed_purchases { get; set; }
         public member member { get; set; }
+        public product product { get; set; }
     }
 }
