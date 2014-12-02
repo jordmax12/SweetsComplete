@@ -338,12 +338,7 @@
     <Content Include="Views\Members\ManageUser.cshtml" />
     <Content Include="Views\Members\EditUser.cshtml" />
     <Content Include="Views\Products\PastPurchases.cshtml" />
-    <Content Include="Views\Products\SortByHighest.cshtml" />
-    <Content Include="Views\Products\SortByLower.cshtml" />
-    <Content Include="Views\Products\SortBySpecial.cshtml" />
-    <Content Include="Views\Products\SortByMost.cshtml" />
     <Content Include="Views\Account\ShoppingCart.cshtml" />
-    <Content Include="Views\Products\SortByLeast.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

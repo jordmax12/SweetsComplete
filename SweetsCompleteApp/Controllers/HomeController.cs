@@ -14,7 +14,7 @@ namespace SweetsCompleteApp.Controllers
         UsersEntities db = new UsersEntities();
         public ActionResult Index(int? page)
         {
-            var grabProducts = db.products.Where(p => p.special == 1).OrderBy(p => p.price);
+            var grabProducts = db.products.Where(p => p.special == 1);
             return View(grabProducts.ToList().ToPagedList(page ?? 1, 3));
         }
 

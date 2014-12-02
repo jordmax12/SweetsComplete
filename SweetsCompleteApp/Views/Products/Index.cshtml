@@ -33,11 +33,11 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("SortByLower", "Products")"></i>Low</a></li>
+                        <li><a href="@Url.Action("Index", "Products", new { query = "SortByLowest" })"></i>Low</a></li>
                         <li class="divider"></li>
-                        <li><a href="@Url.Action("SortByHighest", "Products")"><i class=" icon-trash"></i>High</a></li>
+                        <li><a href="@Url.Action("Index", "Products", new { query = "SortByHighest" })"><i class=" icon-trash"></i>High</a></li>
                         <li class="divider"></li>
-                        <li><a href="@Url.Action("SortBySpecial", "Products")"><i class="icon-ban-circle"></i>Special</a></li>
+                        <li><a href="@Url.Action("Index", "Products", new { query = "SortBySpecial" })"><i class="icon-ban-circle"></i>Special</a></li>
                     </ul>
                 </div>
             </div>
@@ -50,9 +50,9 @@
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="@Url.Action("SortByMost", "Products")"><i class="icon-pencil"></i>Most</a></li>
+                        <li><a href="@Url.Action("Index", "Products", new { query = "SortByMost" })"><i class="icon-pencil"></i>Most</a></li>
                         <li class="divider"></li>
-                        <li><a href="@Url.Action("SortByLeast", "Products")"><i class="icon-trash"></i>Least</a></li>
+                        <li><a href="@Url.Action("Index", "Products", new { query = "SortByLeast" })"><i class="icon-trash"></i>Least</a></li>
                     </ul>
                 </div>
             </div>
