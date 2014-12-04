@@ -274,6 +274,15 @@ namespace SweetsCompleteApp.Controllers
                 cookie.Value = loginCred;
                 cookie.Expires = DateTime.Now.AddSeconds(180);
                 Response.Cookies.Add(cookie);
+                int userID = GrabUserID(model.Email.Trim(), model.Password.Trim());
+                if (userID != 0)
+                {
+                    HttpCookie IDcookie = new HttpCookie("userID");
+                    IDcookie.Value = userID.ToString();
+                    cookie.Expires = DateTime.Now.AddSeconds(180);
+                    Response.Cookies.Add(IDcookie);
+                }
+
                 return RedirectToAction("Index", "Home");
                 /*IdentityResult result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
