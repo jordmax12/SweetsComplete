@@ -1,5 +1,11 @@
 ﻿@using PagedList.Mvc;
 @using PagedList;
+@Styles.Render("~/Content/css")
+@Styles.Render("~/Content/themes/base/css")
+@Scripts.Render("~/bundles/modernizr")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/jqueryui")
 @model IPagedList<SweetsCompleteApp.product>
 @{
     ViewBag.Title = "ShoppingCart";
@@ -41,11 +47,16 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="col-sm-1 col-md-1" style="text-align: center">
-                                <input type="email" class="form-control" id="exampleInputEmail1" value="3">
+                            <td class="col-sm-1 col-md-1" style="text-align: center;">
+                                <input type="email" class="form-control" id="quantityInput" value="1">
                             </td>
+                            @{
+                                var price = item.price;
+                            }
+
                             <td class="col-sm-1 col-md-1 text-center"><strong>@Html.DisplayFor(modelItem => item.price)</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center"><strong>$14.61</strong></td>
+                            <td class="col-sm-1 col-md-1 text-center" id="total_sale"><strong>$14.56</strong></td>
+           
                             <td class="col-sm-1 col-md-1">
                                 <button type="button" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove"></span> Remove
@@ -54,6 +65,7 @@
                         </tr>
                     }
                    }
+                   
                    else
                    {
                     <tr>
@@ -102,7 +114,21 @@
     </div>
 </div>
 
-   
 
 
+<button id="target">
+    Click here
+</button>
+
+<script type="text/javascript">
+    $("#target").click(function () { alert("Click"); });
+</script>
+
+
+
+
+
+<script>
+    
+</script>
 

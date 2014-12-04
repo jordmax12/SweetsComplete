@@ -30,7 +30,7 @@
                             <br />
                             @Html.DisplayFor(modelItem => item.price)
                             <br />
-                            <a href="@Url.Action("TestSession", "Products", new { prodID = item.product_id })" class="AddLink"><button class="btn btn-default"> Add to Cart </button></a>
+                            <a href="@Url.Action("ShoppingCartController", "Products", new { prodID = item.product_id })" class="AddLink"><button class="btn btn-default"> Add to Cart </button></a>
                         </p>
                     </div>
                 </li>

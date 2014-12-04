@@ -268,6 +268,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\jquery.formatCurrency-1.4.0.js" />
     <Content Include="WebForm1.aspx" />
     <Content Include="Areas\Images\Views\web.config" />
     <None Include="Properties\PublishProfiles\SweetsComplete.pubxml" />
