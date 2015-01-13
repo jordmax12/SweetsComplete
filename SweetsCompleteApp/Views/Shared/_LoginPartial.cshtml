@@ -16,7 +16,7 @@
                 <li> <a href="@Url.Action("PastPurchases", "Products",  new { userID = userIDToInt })"> Past Orders </a></li>
             </ul>
         </div>
-        <li>@Html.ActionLink("Shopping Cart", "Index", "Members")</li>
+        <li>@Html.ActionLink("Shopping Cart", "ShoppingCart", "Account")</li>
         <li>
             @{
                  string user = Request.Cookies["user"].Value.ToString();
