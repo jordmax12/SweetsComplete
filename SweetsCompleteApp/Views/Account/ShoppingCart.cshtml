@@ -48,55 +48,116 @@
                                 </div>
                             </td>
                             <td class="col-sm-1 col-md-1" style="text-align: center;">
-                                <input type="email" class="form-control" id="quantityInput" value="1">
+                                @{
+                                    var id = item.product_id + "-qty";
+                                }
+                                @if (Request.Cookies[id] != null)
+                                {
+                                    var qtyNum = Request.Cookies[id].Value;
+                                    <input type="email" class="form-control quantityInput" id="@id" value="@qtyNum">
+                                }
+                                else
+                                { <input type="email" class="form-control quantityInput" id="@id" value="1">}
                             </td>
                             @{
                                 var price = item.price;
                             }
 
                             <td class="col-sm-1 col-md-1 text-center"><strong>@Html.DisplayFor(modelItem => item.price)</strong></td>
-                            <td class="col-sm-1 col-md-1 text-center" id="total_sale"><strong>$14.56</strong></td>
-           
+                            @if (Request.Cookies[item.product_id + "-qty"] != null)
+                            {
+                                var cookieString = item.product_id + "-qty";
+                                var t = Request.Cookies[item.product_id + "-qty"].Value;
+                                if (t != null)
+                                {
+                                    try
+                                    {
+                                        var val = Convert.ToInt32(Request.Cookies[item.product_id + "-qty"].Value);
+                                        var final = val*item.price;
+                                        <td class="col-sm-1 col-md-1 text-center" id="total_sale"><strong>@final</strong></td>
+                                        <td>
+                                            <button type="button" class="btn btn-info target" id="@item.product_id">
+                                                Refresh Item
+                                            </button>
+                                        </td>
+                                    }
+                                    catch
+                                    {
+                                        Console.WriteLine( "debug");
+                                    }
+
+                                }
+
+                            }
+                            else
+                            {
+                                <td class="col-sm-1 col-md-1 text-center" id="total_sale"><strong>@item.price</strong></td>
+                                <td>
+                                    <button type="button" class="btn btn-info target" id="@item.product_id">
+                                        Refresh Item
+                                    </button>
+                                </td>
+                            }
+
+
                             <td class="col-sm-1 col-md-1">
                                 <button type="button" class="btn btn-danger">
                                     <span class="glyphicon glyphicon-remove"></span> Remove
                                 </button>
                             </td>
                         </tr>
+
+
                     }
                    }
-                   
+
                    else
                    {
-                    <tr>
+                       <tr>
 
-                    </tr>
+                       </tr>
+                       if (Request.Cookies["qty"] != null)
+                       {
+                           var t = Request.Cookies["qty"].Value;
+                           
+                           if (t != null)
+                           {
+                               HttpCookie myCookie = new HttpCookie("qty");
+                               myCookie.Expires = DateTime.Now.AddDays(-1d);
+                               Response.Cookies.Add(myCookie);
+                               Session.Clear();
+                               Request.Cookies.Remove("qty");
+                                <p>success</p>
+                           }
+
+
+
+                       }
                    }
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$24.59</strong></h5></td>
+                        <td class="text-right"><h5><strong>$0</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right"><h5><strong>$6.94</strong></h5></td>
+                        <td class="text-right"><h5><strong>$0</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>$31.53</strong></h3></td>
+                        <td class="text-right"><h3><strong>$0</strong></h3></td>
                     </tr>
                     <tr>
-                        <td>   </td>
-                        <td>   </td>
-                        <td>   </td>
+                        <td> </td>
+                        <td> </td>
                         <td>
                             <button type="button" class="btn btn-default">
                                 <span class="glyphicon glyphicon-shopping-cart"></span> Continue Shopping
@@ -107,6 +168,9 @@
                                 Checkout <span class="glyphicon glyphicon-play"></span>
                             </button>
                         </td>
+                        <td>
+
+</td>
                     </tr>
                 </tbody>
             </table>
@@ -116,12 +180,33 @@
 
 
 
-<button id="target">
-    Click here
-</button>
+
 
 <script type="text/javascript">
-    $("#target").click(function () { alert("Click"); });
+    
+
+    $(".target").click(function (event) {
+        //works
+        //alert(event.target.id);
+        var quantityID = event.target.id;
+        //works
+        //alert(quantityID);
+        var quantityValue = $("#" + quantityID + "-qty").val();
+        //works
+        //alert(quantityValue);
+        var cookieString = quantityID + "-qty";
+        setCookie(cookieString, quantityValue);
+        location.reload();
+
+        
+
+
+        function setCookie(key, value) {
+            var expires = new Date();
+            expires.setTime(expires.getTime() + (1 * 24 * 60 * 60 * 1000));
+            document.cookie = key + '=' + value + ';expires=' + expires.toUTCString();;
+        }
+    });
 </script>
 
 
