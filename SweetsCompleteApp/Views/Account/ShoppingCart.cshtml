@@ -9,6 +9,10 @@
 @model IPagedList<SweetsCompleteApp.product>
 @{
     ViewBag.Title = "ShoppingCart";
+    List<decimal> totalPrices = new List<decimal>();
+    decimal real_subtotal = new decimal();
+    double real_shipping = new double();
+    decimal real_total = new decimal();
 }
 
 <link rel="stylesheet" type="text/css" href="Content/bootstrap.min.css" />
@@ -34,6 +38,8 @@
                         
                    @if (Session != null && Session["myIds"] != null)
                    {
+                       
+                       
                     foreach (var item in Model)
                     {
                         <tr>
@@ -74,6 +80,7 @@
                                     {
                                         var val = Convert.ToInt32(Request.Cookies[item.product_id + "-qty"].Value);
                                         var final = val*item.price;
+                                        totalPrices.Add(final);
                                         <td class="col-sm-1 col-md-1 text-center" id="total_sale"><strong>@final</strong></td>
                                         <td>
                                             <button type="button" class="btn btn-info target" id="@item.product_id">
@@ -91,6 +98,8 @@
                             }
                             else
                             {
+                                var final = item.price;
+                                totalPrices.Add(final);
                                 <td class="col-sm-1 col-md-1 text-center" id="total_sale"><strong>@item.price</strong></td>
                                 <td>
                                     <button type="button" class="btn btn-info target" id="@item.product_id">
@@ -134,26 +143,63 @@
 
                        }
                    }
-                    <tr>
+
+
+                @{
+                    real_subtotal = 0;
+                    real_shipping = 0;
+                        if (totalPrices.Count != 0)
+                        {
+                            
+                            foreach (decimal idx in totalPrices)
+                            {
+                                Console.WriteLine(idx);
+                                real_subtotal += idx;
+                            }
+
+                            if (real_subtotal < 10)
+                            {
+                                real_shipping = 4.56;
+                            } else if (real_subtotal >= 10 && real_subtotal < 30)
+                            {
+                                real_shipping = 6.32;
+                            } else if (real_subtotal >= 31 && real_subtotal < 50)
+                            {
+                                real_shipping = 8.16;
+                            } else if (real_subtotal >= 51 && real_subtotal < 70)
+                            {
+                                real_shipping = 10.13;
+                            } else if (real_subtotal >= 71 && real_subtotal < 100)
+                            {
+                                real_shipping = 13.59;
+                            } else if (real_subtotal >= 101)
+                            {
+                                real_shipping = 15.93;
+                            }
+
+                            real_total = Convert.ToDecimal(real_shipping) + real_subtotal;
+                        }
+                    }
+                <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Subtotal</h5></td>
-                        <td class="text-right"><h5><strong>$0</strong></h5></td>
+                        <td class="text-right"><h5><strong>$@real_subtotal</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h5>Estimated shipping</h5></td>
-                        <td class="text-right"><h5><strong>$0</strong></h5></td>
+                        <td class="text-right"><h5><strong>$@real_shipping</strong></h5></td>
                     </tr>
                     <tr>
                         <td>   </td>
                         <td>   </td>
                         <td>   </td>
                         <td><h3>Total</h3></td>
-                        <td class="text-right"><h3><strong>$0</strong></h3></td>
+                        <td class="text-right"><h3><strong>$@real_total</strong></h3></td>
                     </tr>
                     <tr>
                         <td> </td>
